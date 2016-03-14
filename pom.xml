@@ -73,7 +73,7 @@
                 <version>${docker.plugin.version}</version>
                 <configuration>
                     <imageName>jhipster/jhipster-dashboard</imageName>
-                    <dockerDirectory>src/main/docker</dockerDirectory>
+                    <dockerDirectory>src/main/docker/dev</dockerDirectory>
                     <resources>
                         <resource>
                             <targetPath>/</targetPath>
