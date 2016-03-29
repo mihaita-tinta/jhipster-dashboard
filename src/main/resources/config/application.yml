@@ -3,7 +3,7 @@ server:
 
 eureka:
     instance:
-        appname: jhipster-dashboard
+        appname: dashboard
         metadataMap:
             instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
     client:
