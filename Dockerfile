@@ -21,4 +21,9 @@ RUN cd /code/ && \
 RUN sh -c 'touch /jhipster-dashboard.jar'
 EXPOSE 8761
 VOLUME /tmp
+
+ENV SPRING_PROFILES_ACTIVE=prod
+ENV SPRING_CLOUD_CONFIG_URI=http://registry:8761/config
+ENV EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://registry:8761/eureka
+
 CMD ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/jhipster-dashboard.jar","--spring.profiles.active=${SPRING_PROFILES}"]
