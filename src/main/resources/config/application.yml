@@ -4,6 +4,7 @@ server:
 eureka:
     instance:
         appname: dashboard
+        instanceId: dashboard:${spring.application.instance_id:${random.value}}
         metadataMap:
             instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
     client:
