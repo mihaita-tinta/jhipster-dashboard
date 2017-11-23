@@ -1,0 +1,11 @@
+FROM openjdk:8-jre-alpine
+
+ENV SPRING_OUTPUT_ANSI_ENABLED=ALWAYS \
+    JHIPSTER_SLEEP=0 \
+    JAVA_OPTS=""
+
+ADD *.war /app.war
+
+EXPOSE 8081
+CMD exec java ${JAVA_OPTS} -Djava.security.egd=file:/dev/./urandom -jar /app.war
+#JAVA_TOOL_OPTIONS use

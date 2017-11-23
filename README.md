@@ -1,25 +1,89 @@
-# JHipster Dashboard
+# jhipster-dashboard
+This application was generated using JHipster 4.10.2, you can find documentation and help at [http://www.jhipster.tech/documentation-archive/v4.10.2](http://www.jhipster.tech/documentation-archive/v4.10.2).
 
-This is the [JHipster](http://jhipster.github.io/) dashboard, based on [Hystrix Dashboard](https://github.com/Netflix/Hystrix/tree/master/hystrix-dashboard) and its [Spring Cloud integration](http://cloud.spring.io/spring-cloud-static/spring-cloud.html#_circuit_breaker_hystrix_dashboard) integration.
+This is a "microservice" application intended to be part of a microservice architecture, please refer to the [Doing microservices with JHipster][] page of the documentation for more information.
 
-This dashboard is used to monitor **Circuit Breakers**.
-To monitor the Hystrix metrics stream of an application point it to the `/hystrix.stream` endpoint. Please note that this application must be annotated with @EnableHystrixDashboard.
+This application is configured for Service Discovery and Configuration with the JHipster-Registry. On launch, it will refuse to start if it is not able to connect to the JHipster-Registry at [http://localhost:8761](http://localhost:8761). For more information, read our documentation on [Service Discovery and Configuration with the JHipster-Registry][].
 
-For example to monitor circuit breakers for the gateway: 
+## Development
 
-    http://localhost:8080/hystrix.stream
+To start your application in the dev profile, simply run:
 
-You can also aggregate several Hystrix streams using the embedded [Turbine](https://github.com/Netflix/Turbine/wiki) (a stream aggregator) in JHipster Dashboard by adding the following file to the registry's central configuration source:
+    ./mvnw
 
-**dashboard.yml**
 
-    turbine:
-        aggregator:
-            clusterConfig: GATEWAY
-        appConfig: gateway
+For further instructions on how to develop with JHipster, have a look at [Using JHipster in development][].
 
-Where turbine.appConfig is a comma separated list of the names of the apps you want to monitor. Then you can access the `GATEWAY` cluster on the following stream:
+### Using angular-cli
 
-    http://localhost:8762/turbine.stream?cluster=GATEWAY
+You can also use [Angular CLI][] to generate some custom client code.
 
-For instruction on how to use it please refer to the [Hystrix Dashboard documentation](https://github.com/Netflix/Hystrix/wiki/Dashboard).
+For example, the following command:
+
+    ng generate component my-component
+
+will generate few files:
+
+    create src/main/webapp/app/my-component/my-component.component.html
+    create src/main/webapp/app/my-component/my-component.component.ts
+    update src/main/webapp/app/app.module.ts
+
+
+## Building for production
+
+To optimize the jhipster-dashboard application for production, run:
+
+    ./mvnw -Pprod clean package
+
+To ensure everything worked, run:
+
+    java -jar target/*.war
+
+
+Refer to [Using JHipster in production][] for more details.
+
+## Testing
+
+To launch your application's tests, run:
+
+    ./mvnw clean test
+
+For more information, refer to the [Running tests page][].
+
+## Using Docker to simplify development (optional)
+
+You can use Docker to improve your JHipster development experience. A number of docker-compose configuration are available in the [src/main/docker](src/main/docker) folder to launch required third party services.
+For example, to start a no database in a docker container, run:
+
+    docker-compose -f src/main/docker/no.yml up -d
+
+To stop it and remove the container, run:
+
+    docker-compose -f src/main/docker/no.yml down
+
+You can also fully dockerize your application and all the services that it depends on.
+To achieve this, first build a docker image of your app by running:
+
+    ./mvnw package -Pprod dockerfile:build
+
+Then run:
+
+    docker-compose -f src/main/docker/app.yml up -d
+
+For more information refer to [Using Docker and Docker-Compose][], this page also contains information on the docker-compose sub-generator (`jhipster docker-compose`), which is able to generate docker configurations for one or several JHipster applications.
+
+## Continuous Integration (optional)
+
+To configure CI for your project, run the ci-cd sub-generator (`jhipster ci-cd`), this will let you generate configuration files for a number of Continuous Integration systems. Consult the [Setting up Continuous Integration][] page for more information.
+
+[JHipster Homepage and latest documentation]: http://www.jhipster.tech
+[JHipster 4.10.2 archive]: http://www.jhipster.tech/documentation-archive/v4.10.2
+[Doing microservices with JHipster]: http://www.jhipster.tech/documentation-archive/v4.10.2/microservices-architecture/
+[Using JHipster in development]: http://www.jhipster.tech/documentation-archive/v4.10.2/development/
+[Service Discovery and Configuration with the JHipster-Registry]: http://www.jhipster.tech/documentation-archive/v4.10.2/microservices-architecture/#jhipster-registry
+[Using Docker and Docker-Compose]: http://www.jhipster.tech/documentation-archive/v4.10.2/docker-compose
+[Using JHipster in production]: http://www.jhipster.tech/documentation-archive/v4.10.2/production/
+[Running tests page]: http://www.jhipster.tech/documentation-archive/v4.10.2/running-tests/
+[Setting up Continuous Integration]: http://www.jhipster.tech/documentation-archive/v4.10.2/setting-up-ci/
+
+
