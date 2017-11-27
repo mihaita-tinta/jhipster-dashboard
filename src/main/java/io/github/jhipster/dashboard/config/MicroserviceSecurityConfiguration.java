@@ -62,6 +62,8 @@ public class MicroserviceSecurityConfiguration extends WebSecurityConfigurerAdap
             .authorizeRequests()
             .antMatchers("/api/**").authenticated()
             .antMatchers("/management/health").permitAll()
+            .antMatchers("/management/turbine.stream").permitAll()
+            .antMatchers("/management/hystrix.stream").permitAll()
             .antMatchers("/management/**").hasAuthority(AuthoritiesConstants.ADMIN)
             .antMatchers("/swagger-resources/configuration/ui").permitAll()
         .and()
